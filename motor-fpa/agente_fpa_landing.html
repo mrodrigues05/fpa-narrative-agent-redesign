@@ -812,6 +812,14 @@ async function executarAnalise({forceAdversarial=false} = {}){
   const mesComp = forceAdversarial ? 'jul/26' : document.getElementById('sel-comp').value;
   const contexto = forceAdversarial ? 'v2.0' : document.getElementById('sel-contexto').value;
 
+  if(forceAdversarial && (!MESES_DISPONIVEIS.includes(mesAtual) || !MESES_DISPONIVEIS.includes(mesComp))){
+    const status = document.getElementById('data-source-status');
+    status.textContent = `"Run Adversarial Test" é o caso real do case Vértice (ago/26 vs jul/26) e esses meses não existem nos dados carregados agora (${MESES_DISPONIVEIS.join(', ')}). Selecione os períodos manualmente acima e use "Executar análise".`;
+    status.className = 'error';
+    status.scrollIntoView({behavior:'smooth', block:'center'});
+    return;
+  }
+
   document.getElementById('btn-run').disabled = true;
   document.getElementById('btn-adversarial').disabled = true;
   document.getElementById('adv-panel').style.display = 'none';
