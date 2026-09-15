@@ -30,6 +30,7 @@ falta, em vez de usar um número antigo silenciosamente (regra §16 do redesenho
 """
 
 import os
+import sys
 import openpyxl
 
 DRIVER_ORDER = ["carteira_media", "taxa", "funding", "credito", "opex", "originacao", "cac"]
@@ -307,7 +308,38 @@ def rodar_caso(nome, mes_atual, mes_comp, usar_memoria=True):
     return evidence, hyps, narrativa, resultado
 
 
+def periodos_disponiveis():
+    """Meses que existem de fato na planilha carregada (exclui o cenário sintético)."""
+    return list(MESES_REAIS)
+
+
+def rodar_periodo_livre(mes_atual, mes_comp):
+    """Analisa qualquer par de períodos presente nos dados carregados — não fica
+    preso aos meses do case. Serve pra quando novos meses forem adicionados a
+    margem.xlsx no futuro, sem precisar editar este arquivo."""
+    disponiveis = periodos_disponiveis() + ["set_sintetico"]
+    for mes in (mes_atual, mes_comp):
+        if mes not in disponiveis:
+            raise SystemExit(
+                f"Período '{mes}' não encontrado em {EXCEL_PATH}.\n"
+                f"Períodos disponíveis: {disponiveis}"
+            )
+    rodar_caso(f"{mes_comp} -> {mes_atual}", mes_atual, mes_comp)
+
+
 if __name__ == "__main__":
+    if len(sys.argv) == 3:
+        # Uso livre: python agent_engine.py <mes_atual> <mes_comparacao>
+        rodar_periodo_livre(sys.argv[1], sys.argv[2])
+        sys.exit(0)
+
+    if len(sys.argv) != 1:
+        raise SystemExit(
+            f"Uso: python {os.path.basename(__file__)} [<mes_atual> <mes_comparacao>]\n"
+            f"Sem argumentos, roda a demonstração fixa dos Casos A/B/C do case.\n"
+            f"Períodos disponíveis: {periodos_disponiveis()}"
+        )
+
     # Caso A — padrão histórico confirmado (jun -> jul): mix sobe, Consignado piora.
     _, hyps_a, _, res_a = rodar_caso("A (padrão confirmado)", "jul/26", "jun/26")
 
@@ -327,3 +359,7 @@ if __name__ == "__main__":
     assert res_c["confidence"] in ("MEDIUM", "LOW"), "Caso C deveria sinalizar confiança reduzida"
     print("OK — hipótese confirmada em A, contradita em B, driver correto identificado,")
     print("     e evidência ambígua do Caso C não vira um driver inventado.")
+    print(f"\nPara analisar outros períodos (ex.: após adicionar novos meses a "
+          f"{os.path.basename(EXCEL_PATH)}):")
+    print(f"  python {os.path.basename(__file__)} <mes_atual> <mes_comparacao>")
+    print(f"  Períodos disponíveis: {periodos_disponiveis()}")
