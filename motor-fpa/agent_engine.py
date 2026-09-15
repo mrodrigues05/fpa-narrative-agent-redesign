@@ -97,7 +97,7 @@ print(f"[agent_engine] drivers carregados de {EXCEL_PATH} — meses: {MESES_REAI
 
 # Cenário SINTÉTICO — não vem da planilha nem do case. Existe só para exercitar
 # o caminho de código "evidência insuficiente" (Caso C, doc de redesenho §14):
-# desloca a taxa de cada BU o suficiente para gerar ~R$1mn de Δ margem em
+# desloca a taxa de cada BU o suficiente para gerar ~R$1mi de Δ margem em
 # sinais opostos, calculado a partir do último mês carregado — funciona com
 # qualquer planilha, não só com jun/jul/ago do case.
 def add_synthetic_scenario(drivers, base_month, target_delta=1.0):
@@ -223,7 +223,7 @@ def validate_hypothesis(claim, evidence):
 def render_reference_narrative(evidence, hypotheses_validadas):
     if evidence["primary_driver"] == "INSUFFICIENT_EVIDENCE":
         return (
-            f"Δ consolidado de {evidence['margin']['delta']:+.2f} mn entre "
+            f"Δ consolidado de {evidence['margin']['delta']:+.2f} mi entre "
             f"{evidence['comparison_period']} e {evidence['period']}. Garantia "
             f"({evidence['bu_contributions'][0]['delta']:+.2f}) e Consignado "
             f"({evidence['bu_contributions'][1]['delta']:+.2f}) têm impacto de magnitude "
@@ -238,11 +238,11 @@ def render_reference_narrative(evidence, hypotheses_validadas):
     dom = next(b for b in evidence["bu_contributions"] if b["bu"] == evidence["primary_driver"])
     outro = next(b for b in evidence["bu_contributions"] if b["bu"] != evidence["primary_driver"])
     return (
-        f"A margem consolidada foi de R$ {evidence['margin']['current']:.2f} mn em "
-        f"{evidence['period']}, variação de R$ {evidence['margin']['delta']:+.2f} mn "
+        f"A margem consolidada foi de R$ {evidence['margin']['current']:.2f} mi em "
+        f"{evidence['period']}, variação de R$ {evidence['margin']['delta']:+.2f} mi "
         f"contra {evidence['comparison_period']}.{aviso_hist} O driver principal foi "
-        f"{evidence['primary_driver']} (Δ {dom['delta']:+.2f} mn); {outro['bu']} teve "
-        f"Δ {outro['delta']:+.2f} mn no período."
+        f"{evidence['primary_driver']} (Δ {dom['delta']:+.2f} mi); {outro['bu']} teve "
+        f"Δ {outro['delta']:+.2f} mi no período."
     )
 
 

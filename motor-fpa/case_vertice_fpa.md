@@ -10,12 +10,12 @@ Recalculei a margem de contribuição por BU e por mês a partir dos drivers da 
 | jul/26 | 12,29 | −0,88 | 11,41 | 11,4 |
 | ago/26 | 8,88 | 1,02 | 9,90 | 9,9 |
 
-**Narrativa de julho: correta.** A participação do Consignado na originação de fato saltou de 25,0% para 40,5%, e o Consignado operou com margem **negativa** (−0,88 mn) por causa do CAC (5,8% da originação, 2,6× o de Garantia). Garantia ficou estável no período (todos os drivers iguais a junho). O diagnóstico "mix de originação explica a queda" é sustentado pelos números.
+**Narrativa de julho: correta.** A participação do Consignado na originação de fato saltou de 25,0% para 40,5%, e o Consignado operou com margem **negativa** (−0,88 mi) por causa do CAC (5,8% da originação, 2,6× o de Garantia). Garantia ficou estável no período (todos os drivers iguais a junho). O diagnóstico "mix de originação explica a queda" é sustentado pelos números.
 
 **Narrativa de agosto: incorreta em dois pontos verificáveis.**
 
-1. *"A queda segue explicada por mix de originação... padrão já observado em julho."* Falso: a participação do Consignado **caiu** de 40,5% para 28,7% em agosto — o mix moveu na direção oposta à de julho. E a margem do Consignado **melhorou** R$ 1,90 mn (de −0,88 para +1,02), porque a originação recuou de 75 para 45 e o CAC total caiu junto. Em agosto, o Consignado empurrou o consolidado para **cima**, não para baixo.
-2. *"Garantia manteve comportamento estável no período."* Falso: a margem de Garantia caiu R$ 3,41 mn (12,29 → 8,88), sozinha mais que toda a queda consolidada (−1,5 mn). Decompondo o Δ de Garantia driver a driver (script `prototype_bridge.py`, mantendo os demais drivers no valor de julho e trocando um de cada vez):
+1. *"A queda segue explicada por mix de originação... padrão já observado em julho."* Falso: a participação do Consignado **caiu** de 40,5% para 28,7% em agosto — o mix moveu na direção oposta à de julho. E a margem do Consignado **melhorou** R$ 1,90 mi (de −0,88 para +1,02), porque a originação recuou de 75 para 45 e o CAC total caiu junto. Em agosto, o Consignado empurrou o consolidado para **cima**, não para baixo.
+2. *"Garantia manteve comportamento estável no período."* Falso: a margem de Garantia caiu R$ 3,41 mi (12,29 → 8,88), sozinha mais que toda a queda consolidada (−1,5 mi). Decompondo o Δ de Garantia driver a driver (script `prototype_bridge.py`, mantendo os demais drivers no valor de julho e trocando um de cada vez):
 
 | Driver | Efeito no Δ margem |
 |---|---:|
@@ -60,7 +60,7 @@ O script roda (`python3 prototype_bridge.py`) e termina com `assert` explícito 
 
 - **A decomposição sequencial (bridge) depende da ordem dos drivers.** Trocar carteira, depois taxa, depois funding... aloca os termos cruzados de um jeito; outra ordem daria números levemente diferentes (efeito conhecido de decomposições Volume-Price-Mix). Para este case a ordem não muda a conclusão (taxa e funding dominam em qualquer ordem razoável), mas em situações mais apertadas isso pode enganar. Um decomposição tipo Shapley resolveria a ambiguidade, mas custa mais para calcular e explicar — não fiz essa troca aqui por não valer o custo neste volume de drivers.
 - **O checker de claims é intencionalmente simples (baseado em claims estruturadas, não em NLP sobre o texto livre da narrativa).** Isso o torna confiável e testável, mas significa que alguém (hoje, eu; depois, o próprio agente na etapa de geração) precisa extrair a claim estruturada da narrativa — não é uma auditoria automática de texto solto.
-- **Eventos não recorrentes (como a venda de carteira de R$ 150 mn em Garantia, 29/ago) não entram no CSV de drivers e não teriam sido vistos pelo agente novo ou pelo antigo.** Neste mês isso não distorceu o cálculo (a carteira média de agosto mal se move com um evento em 29/ago), mas é um ponto cego real: nada no pipeline atual injeta eventos qualitativos no contexto do mês corrente.
+- **Eventos não recorrentes (como a venda de carteira de R$ 150 mi em Garantia, 29/ago) não entram no CSV de drivers e não teriam sido vistos pelo agente novo ou pelo antigo.** Neste mês isso não distorceu o cálculo (a carteira média de agosto mal se move com um evento em 29/ago), mas é um ponto cego real: nada no pipeline atual injeta eventos qualitativos no contexto do mês corrente.
 - **Só existem três meses de dado para validar.** O teste de regressão prova que o checker pega *este* erro real; não prova que os limiares (o que conta como "termo dominante") generalizam bem para 12+ meses de histórico com mais ruído.
 - **A Decisão 2 (claims estruturadas com expiração) é mudança de processo, não só de código** — exige que quem aprova a narrativa também aprove/edite a claim estruturada correspondente. Tem atrito de adoção que o protótipo não testa.
 

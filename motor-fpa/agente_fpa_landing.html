@@ -110,7 +110,8 @@
   .bar-track{flex:1; background:var(--neutral); border-radius:3px; height:24px; overflow:hidden;}
   .bar-fill{height:100%; border-radius:3px;}
   .bar-fill.neg{background:var(--negative);} .bar-fill.pos{background:var(--positive);}
-  .bar-value{width:64px; text-align:right; font-family:var(--serif); font-weight:600; font-size:14px;}
+  .bar-value{min-width:150px; flex-shrink:0; text-align:right; font-family:var(--serif); font-weight:600; font-size:14px; line-height:1.3;}
+  .bar-value span{font-family:var(--sans); font-size:11.5px; display:inline-block;}
   .bar-value.neg{color:var(--negative);} .bar-value.pos{color:#0E7A50;}
   .bar-total{border-top:1px solid var(--neutral-line); margin-top:4px; padding-top:12px;}
 
@@ -208,9 +209,9 @@
       <div class="badge"><div class="k">Humano</div><div class="v">decisão final</div></div>
     </div>
     <div class="stat-row">
-      <div class="stat"><div class="num neg">R$ 9,9 mn</div><div class="label">margem consolidada, ago/26 (−13,2% vs. jul/26)</div></div>
-      <div class="stat"><div class="num neg">−R$ 3,41 mn</div><div class="label">Δ Garantia — maior que toda a queda</div></div>
-      <div class="stat"><div class="num pos">+R$ 1,90 mn</div><div class="label">Δ Consignado — melhorou, não piorou</div></div>
+      <div class="stat"><div class="num neg">R$ 9,9 mi</div><div class="label">margem consolidada, ago/26 (−13,2% vs. jul/26)</div></div>
+      <div class="stat"><div class="num neg">−R$ 3,41 mi</div><div class="label">Δ Garantia — maior que toda a queda</div></div>
+      <div class="stat"><div class="num pos">+R$ 1,90 mi</div><div class="label">Δ Consignado — melhorou, não piorou</div></div>
     </div>
   </div>
 </section>
@@ -338,7 +339,7 @@
     <div class="adv-panel" id="adv-panel" style="display:none;">
       <div class="f-title">ADVERSARIAL TEST · HISTORICAL ANCHORING</div>
       <div class="adv-line">Historical context says: <b>"Começar pelo mix de originação entre BUs."</b></div>
-      <div class="adv-line">Current data says: <b>Consignado share ↓ 40,5% → 28,7%</b>; Consignado Δ <b>+1,90 mn</b>; Garantia Δ <b>−3,41 mn</b></div>
+      <div class="adv-line">Current data says: <b>Consignado share ↓ 40,5% → 28,7%</b>; Consignado Δ <b>+1,90 mi</b>; Garantia Δ <b>−3,41 mi</b></div>
       <div class="adv-decision" id="adv-decision"></div>
       <div class="adv-line" id="adv-reason" style="margin-top:8px;"></div>
     </div>
@@ -425,7 +426,7 @@ let MESES_DISPONIVEIS = ["jun/26","jul/26","ago/26"];
 // <<< DADOS_SINCRONIZADOS_COM_MARGEM_XLSX <<<
 
 // Mesmo cálculo do agent_engine.py: desloca a taxa de cada BU o suficiente
-// para gerar ~R$1mn de Δ margem em sinais opostos, a partir do último mês
+// para gerar ~R$1mi de Δ margem em sinais opostos, a partir do último mês
 // carregado. Funciona com qualquer planilha, não só com jun/jul/ago do case.
 function addSyntheticScenario(drivers, baseMonth, targetDelta=1.0){
   [["garantia",-1],["consignado",1]].forEach(([bu,sinal])=>{
@@ -577,10 +578,10 @@ function validateHypothesis(claim, evidence){
 
 function legacyNarrative(evidence){
   if(evidence.period==="jul/26" && evidence.comparison_period==="jun/26"){
-    return "A margem de contribuição consolidada foi de R$ 11,4 mn em julho, queda de R$ 1,5 mn (-11,6%) contra junho, apesar de a originação total ter crescido 15,6% no período. A queda é explicada por mix de originação. A participação do Consignado na originação passou de 25,0% para 40,5%, e o CAC do Consignado (5,8% da originação) é cerca de 2,6x o de Garantia (2,2%). O crescimento veio da unidade que consome mais margem por real originado. Garantia manteve spread e custo de crédito estáveis no período, sem contribuição relevante para a variação. Recomendação: revisitar o incentivo comercial do Consignado antes de sustentar esse nível de originação.";
+    return "A margem de contribuição consolidada foi de R$ 11,4 mi em julho, queda de R$ 1,5 mi (-11,6%) contra junho, apesar de a originação total ter crescido 15,6% no período. A queda é explicada por mix de originação. A participação do Consignado na originação passou de 25,0% para 40,5%, e o CAC do Consignado (5,8% da originação) é cerca de 2,6x o de Garantia (2,2%). O crescimento veio da unidade que consome mais margem por real originado. Garantia manteve spread e custo de crédito estáveis no período, sem contribuição relevante para a variação. Recomendação: revisitar o incentivo comercial do Consignado antes de sustentar esse nível de originação.";
   }
   if(evidence.period==="ago/26" && evidence.comparison_period==="jul/26"){
-    return "A margem de contribuição consolidada foi de R$ 9,9 mn em agosto, queda de R$ 1,5 mn (-13,2%) contra julho. A queda segue explicada por mix de originação entre as unidades, padrão já observado em julho. O Consignado continua pressionando o CAC consolidado e consumindo margem por real originado acima da média da carteira. Garantia manteve comportamento estável no período. Recomendação: revisitar o incentivo comercial do Consignado. Padrão recorrente há dois meses.";
+    return "A margem de contribuição consolidada foi de R$ 9,9 mi em agosto, queda de R$ 1,5 mi (-13,2%) contra julho. A queda segue explicada por mix de originação entre as unidades, padrão já observado em julho. O Consignado continua pressionando o CAC consolidado e consumindo margem por real originado acima da média da carteira. Garantia manteve comportamento estável no período. Recomendação: revisitar o incentivo comercial do Consignado. Padrão recorrente há dois meses.";
   }
   return `A variação de margem em ${evidence.period} segue explicada por mix de originação entre as unidades, padrão já observado em períodos anteriores. Consignado segue pressionando o CAC consolidado. Garantia manteve comportamento estável no período.`;
 }
@@ -588,15 +589,16 @@ function legacyNarrative(evidence){
 function referenceNarrative(evidence, hyps){
   if(evidence.primary_driver==="INSUFFICIENT_EVIDENCE"){
     const g=evidence.bu_contributions[0].delta, c=evidence.bu_contributions[1].delta;
-    return `Δ consolidado de ${fmtSigned(evidence.margin.delta)} mn entre ${evidence.comparison_period} e ${evidence.period}. Garantia (${fmtSigned(g)}) e Consignado (${fmtSigned(c)}) têm impacto de magnitude parecida e sinal oposto. Não há evidência suficiente, com os dados disponíveis, para apontar um driver principal isolado.`;
+    return `Δ consolidado de ${fmtSigned(evidence.margin.delta)} mi entre ${evidence.comparison_period} e ${evidence.period}. Garantia (${fmtSigned(g)}) e Consignado (${fmtSigned(c)}) têm impacto de magnitude parecida e sinal oposto. Não há evidência suficiente, com os dados disponíveis, para apontar um driver principal isolado.`;
   }
   const contradita = hyps.some(h=>h.status==="contradicted");
   const aviso = contradita ? " A hipótese histórica de mix não se sustenta neste período e foi rejeitada." : "";
   const dom = evidence.bu_contributions.find(b=>b.bu===evidence.primary_driver);
   const outro = evidence.bu_contributions.find(b=>b.bu!==evidence.primary_driver);
-  return `A margem consolidada foi de R$ ${evidence.margin.current.toFixed(2)} mn em ${evidence.period}, variação de R$ ${fmtSigned(evidence.margin.delta)} mn contra ${evidence.comparison_period}.${aviso} O driver principal foi ${evidence.primary_driver} (Δ ${fmtSigned(dom.delta)} mn); ${outro.bu} teve Δ ${fmtSigned(outro.delta)} mn no período.`;
+  return `A margem consolidada foi de R$ ${evidence.margin.current.toFixed(2).replace(".",",")} mi em ${evidence.period}, variação de R$ ${fmtSigned(evidence.margin.delta)} mi contra ${evidence.comparison_period}.${aviso} O driver principal foi ${evidence.primary_driver} (Δ ${fmtSigned(dom.delta)} mi); ${outro.bu} teve Δ ${fmtSigned(outro.delta)} mi no período.`;
 }
-function fmtSigned(x){return (x>=0?"+":"")+x.toFixed(2);}
+function fmtSigned(x){return (x>=0?"+":"")+x.toFixed(2).replace(".",",");}
+function fmtMoneySigned(x){return (x>=0?"+":"-")+"R$ "+Math.abs(x).toFixed(2).replace(".",",")+" mi";}
 
 function runChecker(texto, evidence, hyps){
   const msgs = [];
@@ -671,24 +673,35 @@ function setStep(i, state){
   if(state==='done'){ row.classList.add('done'); row.querySelector('.pipe-icon').textContent='✓'; }
 }
 
+const CHART_CAPTION_STYLE = 'color:var(--ink-soft); font-size:12px; margin:-6px 0 14px;';
+
 function renderEvidenceCharts(evidence){
   const maxBu = Math.max(...evidence.bu_contributions.map(b=>Math.abs(b.delta)));
+  const sumBu = evidence.bu_contributions.reduce((s,b)=>s+Math.abs(b.delta), 0);
   const buHtml = evidence.bu_contributions.map(b=>{
     const pct = (Math.abs(b.delta)/maxBu*100).toFixed(1);
+    const share = sumBu>0 ? (Math.abs(b.delta)/sumBu*100).toFixed(0) : '0';
     const cls = b.delta<0?'neg':'pos';
-    return `<div class="bar-row"><div class="bar-label">${b.bu}</div><div class="bar-track"><div class="bar-fill ${cls}" style="width:${pct}%"></div></div><div class="bar-value ${cls}">${fmtSigned(b.delta)}</div></div>`;
-  }).join('') + `<div class="bar-row bar-total"><div class="bar-label"><b>Δ consolidado</b></div><div class="bar-track"></div><div class="bar-value ${evidence.margin.delta<0?'neg':'pos'}"><b>${fmtSigned(evidence.margin.delta)}</b></div></div>`;
-  document.getElementById('evidence-bu-chart').innerHTML = `<div class="f-title" style="margin-bottom:10px;">CONTRIBUIÇÃO POR BU</div>` + buHtml;
+    return `<div class="bar-row"><div class="bar-label">${b.bu}</div><div class="bar-track"><div class="bar-fill ${cls}" style="width:${pct}%"></div></div><div class="bar-value ${cls}">${fmtMoneySigned(b.delta)} <span style="font-weight:400;opacity:.7;">(${share}% da oscilação)</span></div></div>`;
+  }).join('') + `<div class="bar-row bar-total"><div class="bar-label"><b>Δ consolidado</b></div><div class="bar-track"></div><div class="bar-value ${evidence.margin.delta<0?'neg':'pos'}"><b>${fmtMoneySigned(evidence.margin.delta)}</b></div></div>`;
+  document.getElementById('evidence-bu-chart').innerHTML =
+    `<div class="f-title" style="margin-bottom:4px;">CONTRIBUIÇÃO POR BU</div>` +
+    `<div style="${CHART_CAPTION_STYLE}">Valores em R$ milhões (mi). O comprimento da barra é proporcional à magnitude do impacto — não é uma escala de %. "% da oscilação" é a participação de cada BU na soma dos módulos dos dois Δ (uma leitura melhor que o Δ consolidado quando os sinais são opostos).</div>` +
+    buHtml;
 
   let driverHtml = '';
   if(evidence.drivers_detail){
     const entries = Object.entries(evidence.drivers_detail);
     const maxD = Math.max(...entries.map(([,v])=>Math.abs(v)));
-    driverHtml = `<div class="f-title" style="margin-bottom:10px;">DRIVERS — ${evidence.primary_driver.toUpperCase()}</div>` +
+    const sumD = entries.reduce((s,[,v])=>s+Math.abs(v), 0);
+    driverHtml =
+      `<div class="f-title" style="margin-bottom:4px;">DRIVERS — ${evidence.primary_driver.toUpperCase()}</div>` +
+      `<div style="${CHART_CAPTION_STYLE}">Decomposição do Δ de ${evidence.primary_driver} em R$ milhões (mi), driver a driver. "% do Δ" mostra o quanto cada driver pesou dentro dessa decomposição.</div>` +
       entries.map(([k,v])=>{
         const pct = (Math.abs(v)/maxD*100).toFixed(1);
+        const share = sumD>0 ? (Math.abs(v)/sumD*100).toFixed(0) : '0';
         const cls = v<0?'neg':'pos';
-        return `<div class="bar-row"><div class="bar-label">${k}</div><div class="bar-track"><div class="bar-fill ${cls}" style="width:${pct}%"></div></div><div class="bar-value ${cls}">${fmtSigned(v)}</div></div>`;
+        return `<div class="bar-row"><div class="bar-label">${k}</div><div class="bar-track"><div class="bar-fill ${cls}" style="width:${pct}%"></div></div><div class="bar-value ${cls}">${fmtMoneySigned(v)} <span style="font-weight:400;opacity:.7;">(${share}% do Δ)</span></div></div>`;
       }).join('');
   }
   document.getElementById('evidence-driver-chart').innerHTML = driverHtml;
@@ -716,8 +729,8 @@ function renderNarrative(texto, mode, evidence, hyps){
 
   document.getElementById('four-up').style.display = 'grid';
   const dom = evidence.primary_driver!=='INSUFFICIENT_EVIDENCE' ? evidence.bu_contributions.find(b=>b.bu===evidence.primary_driver) : null;
-  document.getElementById('fc-fato').textContent = `Margem ${evidence.period} = R$ ${evidence.margin.current.toFixed(2)} mn (Δ ${fmtSigned(evidence.margin.delta)} mn vs ${evidence.comparison_period}).`;
-  document.getElementById('fc-interp').textContent = dom ? `${dom.bu} concentra o maior impacto (Δ ${fmtSigned(dom.delta)} mn).` : 'Impactos de magnitude parecida — sem driver isolado dominante.';
+  document.getElementById('fc-fato').textContent = `Margem ${evidence.period} = R$ ${evidence.margin.current.toFixed(2).replace(".",",")} mi (Δ ${fmtSigned(evidence.margin.delta)} mi vs ${evidence.comparison_period}).`;
+  document.getElementById('fc-interp').textContent = dom ? `${dom.bu} concentra o maior impacto (Δ ${fmtSigned(dom.delta)} mi).` : 'Impactos de magnitude parecida — sem driver isolado dominante.';
   const contradita = hyps.find(h=>h.status==='contradicted');
   document.getElementById('fc-hip').textContent = contradita ? `Hipótese histórica ("${contradita.claim_id}") testada e contradita neste período.` : (hyps.length ? 'Hipótese histórica confirmada neste período — ainda requer nova validação no mês seguinte.' : 'Nenhuma hipótese histórica ativa nesta rodada.');
   document.getElementById('fc-rec').textContent = evidence.primary_driver==='Garantia' ? 'Investigar se a compressão de taxa/funding em Garantia é pontual ou estrutural.' : (evidence.primary_driver==='Consignado' ? 'Revisitar o incentivo comercial do Consignado.' : 'Levantar dado adicional antes de recomendar qualquer ação.');

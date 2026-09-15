@@ -65,9 +65,9 @@ def write_bu_sheet(wb, nome, dados):
         c = ws.cell(row=1, column=2 + i, value=mes); c.font = HEADER; c.fill = HEADER_FILL
 
     linhas = [
-        ("Originação (R$ mn)", dados["originacao"], NUM, BLUE),
-        ("Carteira média (R$ mn)", dados["carteira_media"], NUM, BLUE),
-        ("Carteira final - EoP (R$ mn)", dados["carteira_eop"], NUM, BLUE),
+        ("Originação (R$ mi)", dados["originacao"], NUM, BLUE),
+        ("Carteira média (R$ mi)", dados["carteira_media"], NUM, BLUE),
+        ("Carteira final - EoP (R$ mi)", dados["carteira_eop"], NUM, BLUE),
         ("Taxa média (% a.a.)", dados["taxa"], PCT, BLUE),
         ("Custo de funding (% a.a.)", dados["funding"], PCT, BLUE),
         ("Custo de crédito (% a.a.)", dados["credito"], PCT, BLUE),
@@ -84,9 +84,9 @@ def write_bu_sheet(wb, nome, dados):
         row += 1
 
     row += 1
-    ws.cell(row=row, column=1, value="Margem de contribuição (R$ mn)").font = BOLD
+    ws.cell(row=row, column=1, value="Margem de contribuição (R$ mi)").font = BOLD
     r = {k: row_ref[v] for k, v in {
-        "orig": "Originação (R$ mn)", "cart": "Carteira média (R$ mn)", "taxa": "Taxa média (% a.a.)",
+        "orig": "Originação (R$ mi)", "cart": "Carteira média (R$ mi)", "taxa": "Taxa média (% a.a.)",
         "fund": "Custo de funding (% a.a.)", "cred": "Custo de crédito (% a.a.)", "opex": "Opex variável (% a.a.)",
         "cac": "CAC (% da originação)",
     }.items()}
@@ -119,9 +119,9 @@ def build(output_path="dados.xlsx"):
     ws["A1"] = "Indicador"; ws["A1"].font = HEADER; ws["A1"].fill = HEADER_FILL
     for i, mes in enumerate(MESES):
         c = ws.cell(row=1, column=2 + i, value=mes); c.font = HEADER; c.fill = HEADER_FILL
-    ws.cell(row=2, column=1, value="Originação total (R$ mn)").font = BOLD
-    ws.cell(row=3, column=1, value="Margem de contribuição (R$ mn)").font = BOLD
-    ws.cell(row=4, column=1, value="Margem — valor de referência (R$ mn)").font = BOLD
+    ws.cell(row=2, column=1, value="Originação total (R$ mi)").font = BOLD
+    ws.cell(row=3, column=1, value="Margem de contribuição (R$ mi)").font = BOLD
+    ws.cell(row=4, column=1, value="Margem — valor de referência (R$ mi)").font = BOLD
     ws.cell(row=5, column=1, value="Reconciliado? (|calc - referência| < 0,02)").font = BOLD
     for i, mes in enumerate(MESES):
         col = get_column_letter(2 + i)
