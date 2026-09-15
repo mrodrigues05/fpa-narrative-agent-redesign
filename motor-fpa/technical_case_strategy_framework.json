@@ -1,0 +1,380 @@
+{
+  "schema_name": "technical_case_strategy_framework",
+  "version": "1.0",
+  "language": "pt-BR",
+  "objective": {
+    "primary": "Construir colaborativamente uma estratégia completa para analisar, desenvolver, apresentar e defender o case técnico oficial recebido no processo seletivo.",
+    "secondary": [
+      "Reaproveitar informações relevantes do histórico da conversa.",
+      "Substituir hipóteses anteriores pelo conteúdo oficial do case.",
+      "Explorar recursos disponíveis no Claude Pro de forma estratégica.",
+      "Criar uma solução tecnicamente sólida, orientada a negócio e visualmente profissional.",
+      "Identificar oportunidades reais de diferenciação."
+    ]
+  },
+
+  "conversation_context": {
+    "instruction": "Antes de trabalhar no case, revisar toda a conversa disponível desde o início.",
+    "initial_phase": {
+      "status": "case_not_received",
+      "objective": "Entender o que poderia ser o case com base na descrição da vaga e como isso influenciaria a apresentação."
+    },
+    "current_phase": {
+      "status": "official_case_received",
+      "objective": "Analisar e executar o case real, transformando-o em uma solução e apresentação de alto nível."
+    },
+    "priority_rule": "O case oficial possui prioridade sobre qualquer hipótese ou previsão feita anteriormente."
+  },
+
+  "workflow": {
+    "method": "iterative_collaboration",
+    "steps": [
+      "reconstruct_context",
+      "audit_previous_schema",
+      "understand_official_case",
+      "define_problem",
+      "identify_requirements",
+      "generate_hypotheses",
+      "analyze_data",
+      "derive_insights",
+      "develop_recommendations",
+      "identify_differentiators",
+      "design_storytelling",
+      "build_presentation",
+      "simulate_evaluation",
+      "critically_review",
+      "finalize_strategy"
+    ],
+    "interaction_model": [
+      "Analyze",
+      "Propose",
+      "Question",
+      "User_decides",
+      "Update",
+      "Execute",
+      "Review"
+    ]
+  },
+
+  "schema_evolution": {
+    "current_version": "v1",
+    "rule": "Do not assume the initial schema is definitive.",
+    "process": [
+      "Review previous schema.",
+      "Identify strengths and weaknesses.",
+      "Propose improvements.",
+      "Present strategic choices.",
+      "Incorporate user decisions.",
+      "Generate updated schema version."
+    ],
+    "versioning": {
+      "v1": "Initial proposed architecture",
+      "v2": "Updated after strategic decisions",
+      "final": "Validated workflow for execution and presentation"
+    }
+  },
+
+  "case_analysis": {
+    "required_questions": [
+      "What exactly is being requested?",
+      "What is the central business problem?",
+      "What are the explicit requirements?",
+      "What are the implicit expectations?",
+      "What data is available?",
+      "What data may be missing?",
+      "What assumptions are necessary?",
+      "What hypotheses can be tested?",
+      "Which analyses are essential?",
+      "Which analyses are complementary?",
+      "What insights can be generated?",
+      "What decisions can be supported?",
+      "What limitations exist?"
+    ],
+    "classification": {
+      "mandatory": "Required to answer the case.",
+      "relevant": "Adds analytical or business value.",
+      "differentiator": "Creates meaningful competitive advantage in the presentation."
+    }
+  },
+
+  "analytical_framework": {
+    "principle": "Do not add complexity without business value.",
+    "analysis_template": {
+      "business_question": "",
+      "hypothesis": "",
+      "data_required": [],
+      "methodology": "",
+      "analysis": "",
+      "result": "",
+      "insight": "",
+      "business_impact": "",
+      "limitations": "",
+      "priority": "essential|relevant|differentiator",
+      "effort": "low|medium|high",
+      "impact": "low|medium|high"
+    }
+  },
+
+  "differentiation": {
+    "goal": "Go beyond merely fulfilling the case requirements.",
+    "potential_dimensions": [
+      "business insight",
+      "data analysis",
+      "statistics",
+      "machine learning",
+      "artificial intelligence",
+      "automation",
+      "scenario analysis",
+      "segmentation",
+      "KPI framework",
+      "financial impact",
+      "operational impact",
+      "visualization",
+      "storytelling",
+      "strategic recommendations"
+    ],
+    "decision_rule": "Only recommend an advanced technique when it provides meaningful additional value.",
+    "evaluation": [
+      "impact",
+      "effort",
+      "risk",
+      "presentation_value",
+      "business_relevance"
+    ]
+  },
+
+  "claude_pro_strategy": {
+    "objective": "Maximize the practical value of Claude Pro throughout the case development process.",
+    "areas": [
+      "document analysis",
+      "dataset exploration",
+      "data interpretation",
+      "coding assistance",
+      "calculation validation",
+      "hypothesis generation",
+      "statistical reasoning",
+      "visualization planning",
+      "quality control",
+      "methodology review",
+      "storytelling",
+      "presentation development",
+      "slide critique",
+      "question simulation",
+      "interview preparation"
+    ],
+    "recommendation_format": {
+      "tool_or_feature": "",
+      "task": "",
+      "input": "",
+      "process": "",
+      "expected_output": "",
+      "case_value": ""
+    },
+    "accuracy_rule": "Do not claim that a Claude feature exists or is available in the user's plan without sufficient confidence."
+  },
+
+  "presentation": {
+    "objective": "Create a professional, concise and persuasive case presentation.",
+    "storytelling_model": [
+      "Context",
+      "Problem",
+      "Objective",
+      "Hypotheses",
+      "Evidence",
+      "Analysis",
+      "Insights",
+      "Recommendations",
+      "Impact",
+      "Next Steps"
+    ],
+    "slide_principles": [
+      "One main message per slide.",
+      "Minimize unnecessary text.",
+      "Prioritize evidence over decoration.",
+      "Use charts when they communicate better than text.",
+      "Highlight important numbers.",
+      "Maintain consistent visual hierarchy.",
+      "Connect every important analysis to a business implication."
+    ],
+    "slide_template": {
+      "slide_number": 0,
+      "title": "",
+      "objective": "",
+      "main_message": "",
+      "recommended_visual": "",
+      "data_required": [],
+      "key_insight": "",
+      "speaker_notes": "",
+      "possible_questions": []
+    }
+  },
+
+  "storytelling": {
+    "principle": "The presentation must explain why the findings matter, not merely describe what was analyzed.",
+    "required_logic": [
+      "What did we discover?",
+      "Why does it matter?",
+      "What explains the result?",
+      "What should the company do?",
+      "What impact could this generate?"
+    ]
+  },
+
+  "evaluation": {
+    "perspectives": [
+      {
+        "role": "Recruiter",
+        "focus": [
+          "communication",
+          "clarity",
+          "fit",
+          "maturity"
+        ]
+      },
+      {
+        "role": "Technical Evaluator",
+        "focus": [
+          "methodology",
+          "data reasoning",
+          "technical decisions",
+          "analytical depth"
+        ]
+      },
+      {
+        "role": "Hiring Manager",
+        "focus": [
+          "business value",
+          "decision making",
+          "practicality",
+          "impact"
+        ]
+      }
+    ],
+    "scoring": {
+      "scale": "0-10",
+      "dimensions": [
+        "problem understanding",
+        "analytical quality",
+        "reasoning",
+        "technical depth",
+        "business vision",
+        "data usage",
+        "technology",
+        "storytelling",
+        "visual quality",
+        "clarity",
+        "defense capability",
+        "differentiation"
+      ]
+    }
+  },
+
+  "interview_preparation": {
+    "question_categories": [
+      "data",
+      "methodology",
+      "hypotheses",
+      "statistics",
+      "business",
+      "technology",
+      "limitations",
+      "decisions",
+      "recommendations"
+    ],
+    "question_template": {
+      "question": "",
+      "what_evaluator_is_testing": "",
+      "recommended_answer_structure": "",
+      "common_mistake": ""
+    },
+    "difficulty_levels": [
+      "basic",
+      "technical",
+      "business",
+      "challenging",
+      "curveball"
+    ]
+  },
+
+  "time_based_strategy": {
+    "two_hours": {
+      "objective": "Deliver a strong minimum viable solution.",
+      "focus": [
+        "understand problem",
+        "essential analysis",
+        "key insight",
+        "recommendation",
+        "basic presentation"
+      ]
+    },
+    "six_hours": {
+      "objective": "Build a robust and differentiated solution.",
+      "focus": [
+        "deeper analysis",
+        "validation",
+        "better visualizations",
+        "stronger storytelling",
+        "additional insights"
+      ]
+    },
+    "full_day": {
+      "objective": "Maximize analytical depth and presentation quality.",
+      "focus": [
+        "robust validation",
+        "advanced analysis where justified",
+        "scenario analysis",
+        "business impact",
+        "presentation refinement",
+        "mock interview"
+      ]
+    }
+  },
+
+  "collaboration_rules": {
+    "decision_support": "When an important strategic decision exists, present 2-3 alternatives with trade-offs and recommend one.",
+    "do_not_overengineer": true,
+    "challenge_user_assumptions": true,
+    "explain_reasoning": true,
+    "separate_facts_from_assumptions": true,
+    "separate_requirements_from_differentiators": true,
+    "flag_uncertainty": true,
+    "avoid_redundancy": true,
+    "prioritize_business_relevance": true
+  },
+
+  "final_deliverables": {
+    "case_map": [
+      "executive_summary",
+      "central_problem",
+      "objectives",
+      "hypotheses",
+      "available_data",
+      "required_data",
+      "priority_analyses",
+      "additional_analyses",
+      "expected_insights",
+      "recommendations",
+      "differentiators",
+      "Claude_Pro_usage",
+      "presentation_structure",
+      "storytelling",
+      "limitations",
+      "likely_questions",
+      "preparation_plan"
+    ],
+    "final_schema": "A reusable operating framework for the complete case development process."
+  },
+
+  "first_response_constraint": {
+    "do_not_solve_case_immediately": true,
+    "required_outputs": [
+      "reconstructed_conversation_context",
+      "previous_schema_audit",
+      "elements_to_preserve",
+      "elements_to_change",
+      "Schema_v1",
+      "strategic_decisions_to_make",
+      "recommended_next_step"
+    ]
+  }
+}
