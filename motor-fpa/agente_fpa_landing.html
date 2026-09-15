@@ -128,6 +128,12 @@
   .bar-value span{font-family:var(--sans); font-size:11.5px; display:inline-block;}
   .bar-value.neg{color:var(--negative);} .bar-value.pos{color:#0E7A50;}
   .bar-total{border-top:1px solid var(--neutral-line); margin-top:4px; padding-top:12px;}
+  @media (max-width:520px){
+    .bar-row{flex-wrap:wrap; row-gap:4px;}
+    .bar-label{width:auto;}
+    .bar-track{flex-basis:100%; order:3;}
+    .bar-value{margin-left:auto; text-align:right;}
+  }
 
   .hyp-card{border-left:3px solid var(--neutral-line); padding:14px 18px; background:var(--paper); border-radius:0 6px 6px 0; margin-bottom:12px;}
   .hyp-card.confirmed{border-left-color:var(--brand);}
