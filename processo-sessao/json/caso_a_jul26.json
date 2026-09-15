@@ -1,0 +1,51 @@
+{
+  "evidence": {
+    "period": "jul/26",
+    "comparison_period": "jun/26",
+    "margin": {
+      "current": 11.41,
+      "previous": 12.9,
+      "delta": -1.49
+    },
+    "bu_contributions": [
+      {
+        "bu": "Garantia",
+        "delta": 0.38
+      },
+      {
+        "bu": "Consignado",
+        "delta": -1.87
+      }
+    ],
+    "primary_driver": "Consignado",
+    "reconciliation": {
+      "bridge_sum": -1.49,
+      "reconciled": true
+    },
+    "mix": {
+      "consignado_share_comp": 0.25,
+      "consignado_share_atual": 0.405
+    },
+    "drivers_detail": {
+      "carteira_media": 0.16,
+      "taxa": 0.0,
+      "funding": 0.0,
+      "credito": 0.0,
+      "opex": 0.0,
+      "originacao": -2.03,
+      "cac": 0.0
+    }
+  },
+  "historical_hypotheses": [
+    {
+      "claim_id": "mix_consignado_pressiona_margem",
+      "descricao": "Aumento da participação do Consignado na originação pressiona a margem consolidada (CAC do Consignado é ~2,6x o de Garantia).",
+      "period_origem": "jul/26",
+      "evidence_origem": "delta_margin_consignado(jul/26)=-1.87; primary_driver=Consignado",
+      "valid_until": "requires_current_period_validation",
+      "period_testado": "jul/26",
+      "status": "confirmed_for_period",
+      "evidence_testada": "delta_margin_consignado(jul/26)=-1.87; primary_driver=Consignado"
+    }
+  ]
+}

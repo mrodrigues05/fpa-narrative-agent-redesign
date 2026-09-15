@@ -1,0 +1,26 @@
+{
+  "period": "ago/26",
+  "comparison_period": "jul/26",
+  "margin": {
+    "current": 9.9,
+    "previous": 11.4,
+    "delta": -1.5
+  },
+  "bu_contributions": [
+    {
+      "bu": "Garantia",
+      "delta": -3.41
+    },
+    {
+      "bu": "Consignado",
+      "delta": 1.9
+    }
+  ],
+  "primary_driver": "Garantia",
+  "historical_hypotheses": [
+    {
+      "claim": "Mix Consignado pressiona margem",
+      "status": "contradicted"
+    }
+  ]
+}

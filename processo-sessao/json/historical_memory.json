@@ -1,0 +1,9 @@
+[
+  {
+    "claim_id": "mix_consignado_pressiona_margem",
+    "descricao": "Aumento da participação do Consignado na originação pressiona a margem consolidada (CAC do Consignado é ~2,6x o de Garantia).",
+    "period_origem": "jul/26",
+    "evidence_origem": "delta_margin_consignado(jul/26)=-1.87; primary_driver=Consignado",
+    "valid_until": "requires_current_period_validation"
+  }
+]

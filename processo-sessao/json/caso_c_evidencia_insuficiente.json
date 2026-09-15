@@ -1,0 +1,36 @@
+{
+  "evidence": {
+    "period": "set_sintetico",
+    "comparison_period": "ago/26",
+    "margin": {
+      "current": 9.9,
+      "previous": 9.9,
+      "delta": -0.0
+    },
+    "bu_contributions": [
+      {
+        "bu": "Garantia",
+        "delta": -1.0
+      },
+      {
+        "bu": "Consignado",
+        "delta": 1.0
+      }
+    ],
+    "primary_driver": "INSUFFICIENT_EVIDENCE",
+    "reconciliation": {
+      "bridge_sum": -0.0,
+      "reconciled": true
+    },
+    "mix": {
+      "consignado_share_comp": 0.287,
+      "consignado_share_atual": 0.287
+    },
+    "drivers_detail": null
+  },
+  "nota": "cenário SINTÉTICO — não é dado do case, existe só para testar o caminho de evidência ambígua",
+  "checker_result": {
+    "status": "PASS",
+    "confidence": "MEDIUM"
+  }
+}
