@@ -696,7 +696,7 @@ function renderEvidenceCharts(evidence){
     const sumD = entries.reduce((s,[,v])=>s+Math.abs(v), 0);
     driverHtml =
       `<div class="f-title" style="margin-bottom:4px;">DRIVERS — ${evidence.primary_driver.toUpperCase()}</div>` +
-      `<div style="${CHART_CAPTION_STYLE}">Decomposição do Δ de ${evidence.primary_driver} em R$ milhões (mi), driver a driver. "% do Δ" mostra o quanto cada driver pesou dentro dessa decomposição.</div>` +
+      `<div style="${CHART_CAPTION_STYLE}">Decomposição do Δ de ${evidence.primary_driver} em R$ milhões (mi), driver a driver. "% do Δ" mostra o quanto cada driver pesou dentro dessa decomposição. Um driver com 0% não é irrelevante — significa que ele não <i>mudou de valor</i> entre os dois períodos (ex.: uma taxa de CAC constante nos dois meses não move o bridge, mesmo sendo alta em nível; quem move o bridge é o que mudou, como o volume originado).</div>` +
       entries.map(([k,v])=>{
         const pct = (Math.abs(v)/maxD*100).toFixed(1);
         const share = sumD>0 ? (Math.abs(v)/sumD*100).toFixed(0) : '0';
