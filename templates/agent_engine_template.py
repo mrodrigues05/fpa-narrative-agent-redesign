@@ -7,7 +7,7 @@ Isso é um TEMPLATE — adapte a seção "AJUSTE AQUI" antes de rodar. O resto
 casos de teste) é genérico: foi validado no case de referência (Vértice) e
 não deveria precisar mudar para um case no mesmo formato (duas unidades de
 negócio, um KPI consolidado, um repositório de contexto com um padrão
-observado). Ver `examples/` desta skill para o motor já rodando num case real.
+observado). Ver `motor-fpa/` desta skill para o motor já rodando num case real.
 
 Uso: coloque este arquivo e `dados.xlsx` (ver templates/build_excel_template.py)
 na mesma pasta, ajuste a seção abaixo, e rode `python3 agent_engine_template.py`.

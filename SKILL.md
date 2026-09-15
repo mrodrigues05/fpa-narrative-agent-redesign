@@ -33,7 +33,7 @@ O erro mais comum não é aritmético — é de atribuição causal. A narrativa
    - Documento de avaliação (.md) → `templates/analise-template.md`
    - Motor determinístico em Python + os 3 casos de teste → `templates/agent_engine_template.py` (troque os nomes das unidades de negócio e a fórmula do KPI na seção `AJUSTE AQUI` do topo do arquivo)
    - Fonte de dados em planilha, não embutida no código (mais realista e mais fácil de auditar) → `templates/build_excel_template.py`
-   - Landing page interativa (Agent Run, Evidence, Narrative, Validation, Methodology, Concepts) → `examples/landing_reference.html` é um **exemplo trabalhado** (case Vértice, identidade visual Creditas), não um template genérico: copie e adapte os nomes de unidade, os dados e os tokens de cor no topo do CSS/JS.
+   - Landing page interativa (Agent Run, Evidence, Narrative, Validation, Methodology, Concepts) → `motor-fpa/agente_fpa_landing.html` é um **exemplo trabalhado** (case Vértice, identidade visual Creditas), não um template genérico: copie e adapte os nomes de unidade, os dados e os tokens de cor no topo do CSS/JS. Depois de trocar os dados, rode `motor-fpa/sync_landing_data.py` para regravar os números embutidos a partir da planilha, em vez de editá-los à mão no JS.
 
 ## Entregável mínimo mesmo sob prazo apertado
 Se não der tempo para o protótipo interativo completo, a ordem de prioridade (a mesma que os cases desse tipo cobram na avaliação) é: **1) diagnóstico numérico correto e reconciliado > 2) causa raiz bem defendida > 3) redesenho com teste que roda (mesmo que só o script Python) > 4) riscos honestos > 5) protótipo visual.** Um script que roda e prova o ponto vale mais que uma landing page bonita sobre um diagnóstico furado.

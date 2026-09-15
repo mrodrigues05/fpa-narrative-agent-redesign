@@ -1,27 +1,35 @@
 # Como usar este case — preparação de ambiente e passo a passo
 
-Este documento explica como rodar os três artefatos técnicos do case
-(`agent_engine.py`, `margem.xlsx`, `agente_fpa_landing.html`) a partir do zero,
-sem depender de nada além do que está descrito aqui.
+Este documento explica como rodar os artefatos técnicos do case, todos dentro
+de `motor-fpa/` (`agent_engine.py`, `margem.xlsx`, `agente_fpa_landing.html`,
+`sync_landing_data.py`, `rodar_tudo.py`), a partir do zero, sem depender de
+nada além do que está descrito aqui. O documento avaliado é
+`motor-fpa/case_vertice_fpa.md`; este README é só operacional.
 
 ## 1. O que cada arquivo faz
 
 | Arquivo | Papel |
 |---|---|
-| `case_vertice_fpa.md` | O documento avaliado — avaliação das narrativas, causa raiz, redesenho, riscos, anexo de processo. |
-| `margem.xlsx` | A fonte de dados. Abas "Garantia" e "Consignado" com os drivers brutos; a linha de margem é **fórmula**, não valor colado. |
-| `agent_engine.py` | O motor determinístico em Python: lê `margem.xlsx`, recalcula a margem, monta a evidência, testa a hipótese histórica e roda o checker contra 3 casos (A confirmado, B adversarial/agosto, C evidência insuficiente). |
-| `agente_fpa_landing.html` | A demonstração interativa do mesmo motor, em JavaScript, com painel "Execução do Agente". |
+| `motor-fpa/case_vertice_fpa.md` | O documento avaliado — avaliação das narrativas, causa raiz, redesenho, riscos, anexo de processo. |
+| `motor-fpa/margem.xlsx` | A fonte de dados. Abas "Garantia" e "Consignado" com os drivers brutos; a linha de margem é **fórmula**, não valor colado. |
+| `motor-fpa/agent_engine.py` | O motor determinístico em Python: lê `margem.xlsx`, recalcula a margem, monta a evidência, testa a hipótese histórica e roda o checker. |
+| `motor-fpa/agente_fpa_landing.html` | A demonstração interativa do mesmo motor, em JavaScript, com painel "Execução do Agente". |
+| `motor-fpa/sync_landing_data.py` | Regrava os dados embutidos da landing page a partir de `margem.xlsx`, pra nunca ficarem dessincronizados. |
+| `motor-fpa/rodar_tudo.py` | Roda o motor, sincroniza a landing page e abre ela no navegador — os três passos abaixo numa só chamada. |
 
-Os três primeiros já vêm prontos. Este documento é sobre como colocá-los pra rodar.
+Todos já vêm prontos. Este documento é sobre como colocá-los pra rodar.
 
 ## 2. Preparar o ambiente
 
 Você precisa de **Python 3.9 ou mais recente**. Verifique:
 
 ```bash
-python3 --version
+python --version
 ```
+
+No Windows, se `python3` (com o "3") não for reconhecido mas `python` funcionar,
+use `python` — é só o alias da Microsoft Store no lugar do interpretador de
+verdade; não afeta em nada o resultado.
 
 O único pacote externo usado é o `openpyxl` (lê o `.xlsx`). Se o comando abaixo
 der erro de import, instale:
@@ -34,12 +42,23 @@ Nenhum outro pacote, chave de API, ou serviço externo é necessário para rodar
 o script Python. Para a landing page, basta um navegador — não precisa de
 servidor, Node, nem instalação de nada.
 
-## 3. Rodar o motor (prova em terminal)
-
-Coloque `agent_engine.py` e `margem.xlsx` **na mesma pasta** e rode:
+## 3. Rodar tudo de uma vez (recomendado)
 
 ```bash
-python3 agent_engine.py
+cd motor-fpa
+python rodar_tudo.py
+```
+
+Isso roda o motor em terminal, sincroniza a landing page com `margem.xlsx` e
+já abre a página no navegador padrão. Os passos 4 e 5 abaixo explicam cada
+parte separadamente, caso você precise rodar só uma delas.
+
+## 4. Rodar o motor (prova em terminal)
+
+Dentro de `motor-fpa/`:
+
+```bash
+python agent_engine.py
 ```
 
 Saída esperada (resumo): os três casos (A, B, C) imprimem a evidência
@@ -49,6 +68,13 @@ checker, terminando em:
 ```
 OK — hipótese confirmada em A, contradita em B, driver correto identificado,
      e evidência ambígua do Caso C não vira um driver inventado.
+```
+
+Pra analisar qualquer outro par de meses presente na planilha (por exemplo,
+depois de adicionar novos meses a `margem.xlsx`), sem editar o código:
+
+```bash
+python agent_engine.py <mes_atual> <mes_comparacao>
 ```
 
 Se você mudar qualquer número em `margem.xlsx`, precisa **recalcular as
@@ -62,17 +88,31 @@ fazer nada extra. Isso só importa se você gerar/editar o `.xlsx` via script.
 
 | Erro | Causa | O que fazer |
 |---|---|---|
-| `FileNotFoundError: DADO AUSENTE: não encontrei '.../margem.xlsx'` | O script não achou a planilha na mesma pasta. | Copie `margem.xlsx` pra pasta do script. |
+| `FileNotFoundError: DADO AUSENTE: não encontrei '.../margem.xlsx'` | O script não achou a planilha na mesma pasta. | Confira se `margem.xlsx` está dentro de `motor-fpa/`. |
 | `ValueError: DADO AUSENTE: driver 'X' não encontrado` | Uma linha da planilha foi renomeada ou apagada. | Confira se os rótulos da coluna A da aba continuam com as palavras-chave esperadas (ex.: "taxa", "funding", "cac"...). |
 | `ModuleNotFoundError: No module named 'openpyxl'` | Pacote não instalado. | `pip install openpyxl`. |
 
-## 4. Abrir a landing page
+## 5. Abrir a landing page
 
-Só um jeito, e funciona em qualquer lugar: dê duplo clique no arquivo
-`agente_fpa_landing.html` — ele abre em qualquer navegador, sem instalar
-nada e sem depender de internet. Todo o motor roda no seu próprio navegador
-(JavaScript puro) e a narrativa vem de um template determinístico — não há
-nenhuma chamada de API, então não há custo nem dependência de rede.
+Depois de rodar `python sync_landing_data.py` pelo menos uma vez (ou
+`rodar_tudo.py`, que já faz isso), dê duplo clique em
+`motor-fpa/agente_fpa_landing.html` — ele abre em qualquer navegador, sem
+instalar nada e sem depender de internet. Todo o motor roda no seu próprio
+navegador (JavaScript puro) e a narrativa vem de um template determinístico —
+não há nenhuma chamada de API, então não há custo nem dependência de rede.
+
+### Mantendo a landing page sincronizada com margem.xlsx
+
+Os números que a página usa por padrão (sem upload) ficam num bloco marcado
+dentro do `<script>`, gerado automaticamente — não edite esse bloco à mão.
+Toda vez que `margem.xlsx` mudar, rode:
+
+```bash
+python sync_landing_data.py
+```
+
+Isso regrava o bloco a partir da planilha, então a página nunca fica com
+números diferentes do `margem.xlsx` por esquecimento.
 
 ### Usando o painel "Execução do Agente"
 
@@ -85,19 +125,21 @@ nenhuma chamada de API, então não há custo nem dependência de rede.
    monta o SYSTEM + CONTEXT + EVIDENCE + TASK completo, só não envia a
    nenhuma API), e confira o resultado em Evidências → Narrativa → Validação.
 
-### Carregando uma planilha diferente
+### Carregando uma planilha diferente na hora
 
 No topo do painel Agent Run tem um campo "Fonte de dados". Sem nada
-selecionado, a página usa os números de exemplo embutidos (iguais aos do
-`margem.xlsx`). Se você carregar um `.xlsx` no mesmo formato (abas "Garantia"
-e "Consignado", mesmos rótulos de driver), a página substitui os dados e os
-seletores de mês se atualizam sozinhos.
+selecionado, a página usa os números sincronizados de `margem.xlsx`. Se você
+carregar um `.xlsx` no mesmo formato (abas "Garantia" e "Consignado", mesmos
+rótulos de driver), a página substitui os dados só naquela sessão do
+navegador (sem alterar o arquivo) e os seletores de mês se atualizam
+sozinhos.
 
-## 5. Checklist antes da apresentação
+## 6. Checklist antes da apresentação
 
-- [ ] `python3 agent_engine.py` roda sem erro e termina em "OK".
+- [ ] `python motor-fpa/rodar_tudo.py` roda sem erro, termina em "OK" no
+      terminal e abre a landing page já sincronizada.
 - [ ] `agente_fpa_landing.html` abre (duplo clique, qualquer navegador) e o
       botão "⚡ Run Adversarial Test" mostra o painel de rejeição da hipótese
       histórica.
-- [ ] `margem.xlsx` está na mesma pasta de `agent_engine.py`, caso alguém peça
-      pra rodar o script durante a defesa.
+- [ ] `margem.xlsx` está dentro de `motor-fpa/`, caso alguém peça pra rodar o
+      script durante a defesa.

@@ -395,30 +395,34 @@
 // ============================================================
 const DRIVER_ORDER = ["carteira_media","taxa","funding","credito","opex","originacao","cac"];
 
+// >>> DADOS_SINCRONIZADOS_COM_MARGEM_XLSX (gerado por sync_landing_data.py — não edite à mão) >>>
 // Dados de exemplo embutidos — idênticos ao margem.xlsx (abas Garantia/Consignado),
-// só para a página funcionar sem upload. Assim que uma planilha é carregada,
-// este objeto é substituído por completo pelo conteúdo do arquivo.
+// só para a página funcionar sem upload nem servidor. Rode `python sync_landing_data.py`
+// depois de editar margem.xlsx pra regravar este bloco automaticamente. Assim que uma
+// planilha é carregada manualmente na página, este objeto é substituído em runtime
+// pelo conteúdo do arquivo carregado (isso continua igual).
 let DRIVERS = {
   garantia: {
+    carteira_media: {"jun/26":1800, "jul/26":1820, "ago/26":1840},
+    taxa:           {"jun/26":0.28, "jul/26":0.28, "ago/26":0.264},
+    funding:        {"jun/26":0.13, "jul/26":0.13, "ago/26":0.136},
+    credito:        {"jun/26":0.045, "jul/26":0.045, "ago/26":0.046},
+    opex:           {"jun/26":0.008, "jul/26":0.008, "ago/26":0.008},
     originacao:     {"jun/26":120, "jul/26":110, "ago/26":112},
-    carteira_media: {"jun/26":1800,"jul/26":1820,"ago/26":1840},
-    taxa:           {"jun/26":0.280,"jul/26":0.280,"ago/26":0.264},
-    funding:        {"jun/26":0.130,"jul/26":0.130,"ago/26":0.136},
-    credito:        {"jun/26":0.045,"jul/26":0.045,"ago/26":0.046},
-    opex:           {"jun/26":0.008,"jul/26":0.008,"ago/26":0.008},
-    cac:            {"jun/26":0.022,"jul/26":0.022,"ago/26":0.022},
+    cac:            {"jun/26":0.022, "jul/26":0.022, "ago/26":0.022},
   },
   consignado: {
+    carteira_media: {"jun/26":620, "jul/26":650, "ago/26":680},
+    taxa:           {"jun/26":0.22, "jul/26":0.22, "ago/26":0.22},
+    funding:        {"jun/26":0.13, "jul/26":0.13, "ago/26":0.13},
+    credito:        {"jun/26":0.02, "jul/26":0.02, "ago/26":0.02},
+    opex:           {"jun/26":0.006, "jul/26":0.006, "ago/26":0.006},
     originacao:     {"jun/26":40, "jul/26":75, "ago/26":45},
-    carteira_media: {"jun/26":620,"jul/26":650,"ago/26":680},
-    taxa:           {"jun/26":0.220,"jul/26":0.220,"ago/26":0.220},
-    funding:        {"jun/26":0.130,"jul/26":0.130,"ago/26":0.130},
-    credito:        {"jun/26":0.020,"jul/26":0.020,"ago/26":0.020},
-    opex:           {"jun/26":0.006,"jul/26":0.006,"ago/26":0.006},
-    cac:            {"jun/26":0.058,"jul/26":0.058,"ago/26":0.058},
+    cac:            {"jun/26":0.058, "jul/26":0.058, "ago/26":0.058},
   },
 };
 let MESES_DISPONIVEIS = ["jun/26","jul/26","ago/26"];
+// <<< DADOS_SINCRONIZADOS_COM_MARGEM_XLSX <<<
 
 // Mesmo cálculo do agent_engine.py: desloca a taxa de cada BU o suficiente
 // para gerar ~R$1mn de Δ margem em sinais opostos, a partir do último mês
