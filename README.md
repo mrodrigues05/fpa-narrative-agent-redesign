@@ -6,6 +6,9 @@ de `motor-fpa/` (`agent_engine.py`, `margem.xlsx`, `agente_fpa_landing.html`,
 nada além do que está descrito aqui. O documento avaliado é
 `motor-fpa/case_vertice_fpa.md`; este README é só operacional.
 
+**Protótipo publicado (sem precisar rodar nada localmente):**
+https://mrodrigues05.github.io/fpa-narrative-agent-redesign/
+
 ## 1. O que cada arquivo faz
 
 | Arquivo | Papel |

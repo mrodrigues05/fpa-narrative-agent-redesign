@@ -1,5 +1,8 @@
 # Case FP&A Agêntico — o agente que conta a história dos números
 
+**Protótipo interativo (ao vivo, sem instalar nada):** https://mrodrigues05.github.io/fpa-narrative-agent-redesign/
+**Código-fonte completo:** https://github.com/mrodrigues05/fpa-narrative-agent-redesign
+
 ## 1. Avaliação das narrativas
 
 Recalculei a margem de contribuição por BU e por mês a partir dos drivers da seção 3.4, usando a fórmula das notas de apoio (receita, funding, custo de crédito e opex incidem sobre a **carteira média** ao mês — `carteira × taxa a.a. ÷ 12`; o CAC incide sobre a originação do mês). O resultado reconcilia de forma exata com os três totais consolidados dados no case (12,9 / 11,4 / 9,9), o que valida a fórmula e os dados:
