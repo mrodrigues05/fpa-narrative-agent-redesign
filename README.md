@@ -1,13 +1,21 @@
-# Como usar este case — preparação de ambiente e passo a passo
+# Case FP&A Agêntico — o agente que conta a história dos números
 
-Este documento explica como rodar os artefatos técnicos do case, todos dentro
-de `motor-fpa/` (`agent_engine.py`, `margem.xlsx`, `agente_fpa_landing.html`,
-`sync_landing_data.py`, `rodar_tudo.py`), a partir do zero, sem depender de
-nada além do que está descrito aqui. O documento avaliado é
-`motor-fpa/case_vertice_fpa.md`; este README é só operacional.
+Redesenho de um agente de IA que gera narrativas executivas mensais de
+margem, para um case técnico de processo seletivo. Detalhes completos do
+formato de entrega e o mapeamento de cada exigência para o que foi
+entregue: **[ENTREGA.md](ENTREGA.md)**.
 
-**Protótipo publicado (sem precisar rodar nada localmente):**
-https://mrodrigues05.github.io/fpa-narrative-agent-redesign/
+## Entrega — acesso rápido
+
+| O quê | Onde |
+|---|---|
+| 📄 Documento avaliado (.md + anexo de processo) | [`motor-fpa/case_vertice_fpa.md`](motor-fpa/case_vertice_fpa.md) |
+| 🌐 Protótipo interativo, ao vivo, sem instalar nada | **https://mrodrigues05.github.io/fpa-narrative-agent-redesign/** |
+| 💻 Código-fonte completo | **https://github.com/mrodrigues05/fpa-narrative-agent-redesign** |
+| 🧾 O que foi pedido × o que foi entregue, com links | [`ENTREGA.md`](ENTREGA.md) |
+
+O restante deste documento é operacional: como rodar tudo localmente, do
+zero, sem depender de nada além do que está descrito aqui.
 
 ## 1. O que cada arquivo faz
 
